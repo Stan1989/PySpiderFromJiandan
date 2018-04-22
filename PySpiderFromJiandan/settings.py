@@ -16,10 +16,20 @@ NEWSPIDER_MODULE = 'PySpiderFromJiandan.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'PySpiderFromJiandan (+http://www.yourdomain.com)'
+USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36'# Configure maximum concurrent requests performed by Scrapy (default: 16)
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
+
+
+# Configure item pipelines
+# See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
+ITEM_PIPELINES = {
+    'PySpiderFromJiandan.pipelines.PYJDPipeline': 1,
+}
+
+IMAGES_STORE='ImgsFromJiandan'
+DOWNLOAD_DELAY = 0.25
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -52,9 +62,9 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'PySpiderFromJiandan.middlewares.PyspiderfromjiandanDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+    'PySpiderFromJiandan.middlewares.PyspiderfromjiandanDownloaderMiddleware': 100,
+}
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
@@ -62,11 +72,7 @@ ROBOTSTXT_OBEY = True
 #    'scrapy.extensions.telnet.TelnetConsole': None,
 #}
 
-# Configure item pipelines
-# See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'PySpiderFromJiandan.pipelines.PyspiderfromjiandanPipeline': 300,
-#}
+
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html

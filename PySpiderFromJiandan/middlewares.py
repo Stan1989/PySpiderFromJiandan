@@ -6,6 +6,8 @@
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
+from selenium import webdriver
+import scrapy
 
 
 class PyspiderfromjiandanSpiderMiddleware(object):
@@ -78,6 +80,13 @@ class PyspiderfromjiandanDownloaderMiddleware(object):
         # - or return a Request object
         # - or raise IgnoreRequest: process_exception() methods of
         #   installed downloader middleware will be called
+        if "PhantomJS" in request.meta:
+            print('Debug : PyspiderfromjiandanDownloaderMiddleware:process_request,' + request.url)
+            driver = webdriver.PhantomJS('/Users/Beiwo/phantomjs-2.1.1-macosx/bin/phantomjs')
+            driver.get(request.url)
+            content = driver.page_source.encode('utf-8')
+            driver.quit()
+            return scrapy.http.TextResponse(request.url, encoding='utf-8', body=content, request=request)
         return None
 
     def process_response(self, request, response, spider):
