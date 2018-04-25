@@ -70,6 +70,8 @@ class PyspiderfromjiandanDownloaderMiddleware(object):
         crawler.signals.connect(s.spider_opened, signal=signals.spider_opened)
         return s
 
+    # the key function in this example.
+    # We use the PhantomJS to get the loaded page, and send it to the spider.
     def process_request(self, request, spider):
         # Called for each request that goes through the downloader
         # middleware.

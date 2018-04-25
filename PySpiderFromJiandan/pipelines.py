@@ -11,8 +11,10 @@ from scrapy.exceptions import DropItem
 from scrapy.pipelines.images import ImagesPipeline
 from PySpiderFromJiandan import settings
 
+# We use ImagePipe to download the images
 class PYJDPipeline(ImagesPipeline):
 
+    
     def get_media_requests(self, item, info):
         print("get_media_requests:")
         for image_url in item['image_urls']:
